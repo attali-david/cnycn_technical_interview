@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [toggle]);
 
   return (
-    <div className="h-screen bg-white-50 text-black dark:bg-gray-800 dark:text-gray-100">
+    <div className="h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100">
       <Header toggler={toggler} color={color} />
       <Component {...pageProps} />
     </div>

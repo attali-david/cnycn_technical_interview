@@ -7,7 +7,7 @@ function Header({ toggler, color }) {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <header className="p-4 relative bg-slate-50 dark:bg-gray-800 ">
+    <header className="p-4 relative bg-white-50 dark:bg-gray-800 ">
       <div className="container flex justify-end h-16 mx-auto">
         <button className="flex content-end" onClick={toggler}>
           {color == "light" ? <FaMoon /> : <FaSun />}
