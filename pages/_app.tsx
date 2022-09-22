@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [submit, setSubmit] = useState(false);
   const [cities, setCities] = useState([]);
   const [weather, setWeather] = useState({});
+  const [select, setSelect] = useState(false);
 
   // Color mode toggler that updates localStorage with manual preference
   function toggler(): void {
@@ -49,17 +50,26 @@ function MyApp({ Component, pageProps }: AppProps) {
       console.error(err);
     }
   }
-  console.log(cities);
 
   async function getWeather(lon: number, lat: number) {
+    // try {
+    //   const response = await fetch(
+    //     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=imperial`,
+    //     { mode: "cors" }
+    //   );
+    //   const daily = await response.json().then();
+    //   setWeather({ day: daily });
+    // } catch (err) {
+    //   console.error(err);
+    // }
     try {
-      const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b`,
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=imperial`,
         { mode: "cors" }
       );
-      const weather = await response.json();
-      const results = await weather;
-      setWeather(results);
+      const forecast = await res.json().then();
+      setWeather({ forecast });
+      setSelect(true);
     } catch (err) {
       console.error(err);
     }
@@ -79,7 +89,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         search={search}
         getWeather={getWeather}
       />
-      <Component {...pageProps} />
+      <Component {...pageProps} weather={weather} select={select} />
     </div>
   );
 }
