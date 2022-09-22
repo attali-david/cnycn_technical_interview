@@ -8,9 +8,10 @@ function Header({
   setSearch,
   submit,
   setSubmit,
-  setCities,
+  cities,
   getCities,
   search,
+  getWeather,
 }) {
   function changeHandler(e) {
     e.preventDefault();
@@ -21,6 +22,11 @@ function Header({
     e.preventDefault();
     getCities(search.city);
     setSubmit(!submit);
+  }
+
+  function handleSelect(result: number) {
+    const { lon, lat } = cities[result];
+    getWeather(lon, lat);
   }
 
   return (
@@ -41,9 +47,9 @@ function Header({
         </form>
         <div>
           {submit && (
-            <select>
-              {setCities.map((result) => (
-                <option key={result.lat}>
+            <select onChange={(e) => handleSelect(e.target.selectedIndex)}>
+              {cities.map((result) => (
+                <option key={result.lat} value={result}>
                   {`${result.name}, ${result.state}`}
                 </option>
               ))}

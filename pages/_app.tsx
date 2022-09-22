@@ -9,6 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [search, setSearch] = useState({ city: "", unit: "F" });
   const [submit, setSubmit] = useState(false);
   const [cities, setCities] = useState([]);
+  const [weather, setWeather] = useState({});
 
   // Color mode toggler that updates localStorage with manual preference
   function toggler(): void {
@@ -43,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       );
       const cities = await response.json();
       const results = await cities;
-      setCities(results);
+      setCities(results.filter((i) => i.country == "US"));
     } catch (err) {
       console.error(err);
     }
@@ -58,9 +59,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       );
       const weather = await response.json();
       const results = await weather;
+      setWeather(results);
     } catch (err) {
       console.error(err);
     }
+    console.log(weather);
   }
 
   return (
@@ -74,6 +77,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         cities={cities}
         getCities={getCities}
         search={search}
+        getWeather={getWeather}
       />
       <Component {...pageProps} />
     </div>
