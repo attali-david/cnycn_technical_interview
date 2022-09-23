@@ -3,14 +3,21 @@ import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 import Header from "../components/header";
 
+const baseURL = "http://api.openweathermap.org";
+const myFetch = (url) => {
+  return fetch(baseURL + url, { mode: "cors" }).then((r) => r.json());
+};
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [toggle, setToggle] = useState(true);
   const [color, setColor] = useState("");
-  const [search, setSearch] = useState({ city: "", unit: "F" });
   const [submit, setSubmit] = useState(false);
   const [cities, setCities] = useState([]);
   const [weather, setWeather] = useState({});
   const [select, setSelect] = useState(false);
+  const [search, setSearch] = useState("");
+  const [units, setUnits] = useState("F");
+  const [selectedCity, setSelectedCity] = useState(null);
 
   // Color mode toggler that updates localStorage with manual preference
   function toggler(): void {
@@ -37,37 +44,27 @@ function MyApp({ Component, pageProps }: AppProps) {
     }
   }, [toggle]);
 
+  // useEffect(() => {
+  //   console.log(selectedCity);
+  //   getWeather(selectedCity?.lon, selectedCity?.lat, units);
+  // }, [selectedCity, units]);
+
   async function getCities(city) {
     try {
-      const response = await fetch(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=8bef1d80c11bf6b28961f49525e7eb3b`,
-        { mode: "cors" }
+      const results = await myFetch(
+        `/geo/1.0/direct?q=${city}&limit=5&appid=376da627904ba55ed8b5abd675b36137`
       );
-      const cities = await response.json();
-      const results = await cities;
       setCities(results.filter((i) => i.country == "US"));
     } catch (err) {
       console.error(err);
     }
   }
 
-  async function getWeather(lon: number, lat: number) {
-    // try {
-    //   const response = await fetch(
-    //     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=imperial`,
-    //     { mode: "cors" }
-    //   );
-    //   const daily = await response.json().then();
-    //   setWeather({ day: daily });
-    // } catch (err) {
-    //   console.error(err);
-    // }
+  async function getWeather(lon: number, lat: number, units: string) {
     try {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=imperial`,
-        { mode: "cors" }
+      const forecast = await myFetch(
+        `/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER}&units=imperial`
       );
-      const forecast = await res.json().then();
       setWeather({ forecast });
       setSelect(true);
     } catch (err) {
@@ -87,9 +84,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         cities={cities}
         getCities={getCities}
         search={search}
-        getWeather={getWeather}
+        units={units}
+        setUnits={setUnits}
+        setSelectedCity={setSelectedCity}
+        selectedCity={selectedCity}
       />
-      <Component {...pageProps} weather={weather} select={select} />
+      <Component {...pageProps} weather={weather} selectedCity={selectedCity} />
     </div>
   );
 }
