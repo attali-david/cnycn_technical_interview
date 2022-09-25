@@ -75,7 +75,7 @@ function Weather({ weather }) {
   }, [weather]);
 
   return (
-    <div className="grid md:grid-cols-2 md:grid-gap-3 items-center">
+    <div className="w-auto  items-center">
       <Forecast dates={dates} />
       <Hourly hourly={hourly} />
       <Daily daily={daily} />
