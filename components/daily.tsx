@@ -1,14 +1,13 @@
 import React from "react";
 
-function Daily({ weather }) {
-  const { day, forecast } = weather;
+function Daily({ daily }) {
   const timeElapsed = Date.now();
   const date = new Date(timeElapsed);
 
   return (
     <div className="flex flex-col items-center p-8 rounded-md w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100">
       <div className="text-center">
-        <h2 className="text-xl font-semibold">{day.name}</h2>
+        <h2 className="text-xl font-semibold">{daily.date}</h2>
         <p className="text-sm dark:text-gray-400">{date.toDateString()}</p>
       </div>
       <svg
@@ -52,11 +51,11 @@ function Daily({ weather }) {
       </svg>
       <div className="mb-2 text-3xl font-semibold">
         {" "}
-        {day.main.temp_max}°<span className="mx-1 font-normal">/</span>
-        {day.main.temp_min}°
+        {daily.main.temp_max}°<span className="mx-1 font-normal">/</span>
+        {daily.main.temp_min}°
       </div>
       <p className="dark:text-gray-400 capitalize">
-        {day.weather[0].description}
+        {daily.weather[0].description}
       </p>
     </div>
   );
