@@ -6,17 +6,25 @@ import Forecast from "./forecast";
 import Hourly from "./hourly";
 
 /* 
-    Extracts relevant daily forecast from weather object.
+    Extracts five day forecast and 24 hour forecast from weather object.
  */
+function convertUTCDateToLocalDate(date) {
+  var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+
+  var offset = date.getTimezoneOffset() / 60;
+  var hours = date.getHours();
+
+  newDate.setHours(hours - offset);
+
+  return newDate;
+}
+
 function formatForecast(forecast) {
   const dates: IDate[] = [];
   for (const day of forecast) {
     let UTC = new Date(day.dt_txt);
     let date = UTC.toString().slice(0, 3);
-    let hour = UTC.getUTCHours();
     let lastIndex = dates[dates.length - 1];
-
-    hour = hour > 12 ? hour - 12 : hour;
 
     if (dates.length === 0 || lastIndex.date !== date) {
       dates.push({
@@ -26,10 +34,6 @@ function formatForecast(forecast) {
         description: day.weather[0].main,
         icon: day.weather[0].icon,
       });
-    } else if (dates.length === 0 || dates[0].date === date) {
-      if (dates[0].hourly)
-        dates[0].hourly.push({ time: hour, temp: Math.round(day.main.temp) });
-      else dates[0].hourly = [{ time: hour, temp: Math.round(day.main.temp) }];
     } else {
       lastIndex.temp_min = Math.round(
         Math.min(lastIndex.temp_min, day.main.temp_min)
@@ -39,6 +43,19 @@ function formatForecast(forecast) {
       );
     }
   }
+
+  dates[0].hourly = [];
+  for (let i = 0; i < 7; i++) {
+    let hour = new Date(forecast[i].dt_txt);
+    let time = hour.toLocaleTimeString("en-US", { hour: "2-digit" });
+
+    dates[0].hourly.push({
+      time: time,
+      temp: Math.round(forecast[i].main.temp),
+      icon: forecast[i].weather[0].icon,
+    });
+  }
+
   return dates;
 }
 
@@ -57,12 +74,8 @@ function Weather({ weather }) {
     setDaily(today);
   }, [weather]);
 
-  useEffect(() => {
-    console.log(forecast, daily, hourly);
-  }, [daily]);
-
   return (
-    <div className="container grid grid-cols-2 grid-gap-3">
+    <div className="grid md:grid-cols-2 md:grid-gap-3 items-center">
       <Forecast dates={dates} />
       <Hourly hourly={hourly} />
       <Daily daily={daily} />

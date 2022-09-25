@@ -23,5 +23,5 @@ export interface IDate extends IHourly {
 }
 
 export interface IHourly {
-  hourly?: Array<{ time: number; temp: number }>;
+  hourly?: Array<{ time: string; temp: number; icon: string }>;
 }

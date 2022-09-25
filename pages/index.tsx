@@ -27,7 +27,7 @@ const Home: NextPage = () => {
   }, [selectedCity]);
 
   return (
-    <div className="h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100">
+    <div className="h-screen text-black dark:bg-gray-800 dark:text-gray-100">
       <Header setSelectedCity={setSelectedCity} />
       {weather && <Weather weather={weather} />}
     </div>
