@@ -51,12 +51,10 @@ function Daily({ daily }) {
       </svg>
       <div className="mb-2 text-3xl font-semibold">
         {" "}
-        {daily.main.temp_max}°<span className="mx-1 font-normal">/</span>
-        {daily.main.temp_min}°
+        {daily.temp_max}°<span className="mx-1 font-normal">/</span>
+        {daily.temp_min}°
       </div>
-      <p className="dark:text-gray-400 capitalize">
-        {daily.weather[0].description}
-      </p>
+      <p className="dark:text-gray-400 capitalize">{daily.description}</p>
     </div>
   );
 }

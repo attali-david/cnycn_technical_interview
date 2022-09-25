@@ -14,29 +14,24 @@ function formatForecast(forecast) {
     let UTC = new Date(day.dt_txt);
     let date = UTC.toString().slice(0, 3);
     let hour = UTC.getUTCHours();
+    let lastIndex = dates[dates.length - 1];
 
     hour = hour > 12 ? hour - 12 : hour;
 
-    if (dates.length === 0 || dates[dates.length - 1].date !== date) {
+    if (dates.length === 0 || lastIndex.date !== date) {
       dates.push({
         date: date,
-        min: day.main.temp_min,
-        max: day.main.temp_max,
-        description: day.weather.main,
+        temp_min: day.main.temp_min,
+        temp_max: day.main.temp_max,
+        description: day.weather[0].main,
       });
     } else if (dates.length === 0 || dates[0].date === date) {
       if (dates[0].hourly)
         dates[0].hourly.push({ time: hour, temp: day.main.temp });
       else dates[0].hourly = [{ time: hour, temp: day.main.temp }];
     } else {
-      dates[dates.length - 1].min = Math.min(
-        dates[dates.length - 1].min,
-        day.main.temp_min
-      );
-      dates[dates.length - 1].max = Math.max(
-        dates[dates.length - 1].max,
-        day.main.temp_max
-      );
+      lastIndex.temp_min = Math.min(lastIndex.temp_min, day.main.temp_min);
+      lastIndex.temp_max = Math.max(lastIndex.temp_max, day.main.temp_max);
     }
   }
   return dates;
@@ -58,14 +53,14 @@ function Weather({ weather }) {
   }, [weather]);
 
   useEffect(() => {
-    console.log(weather);
+    console.log(weather, daily, hourly);
   }, [daily]);
 
   return (
     <div className="container">
       <Forecast dates={dates} />
       <Hourly hourly={hourly} />
-      {/* <Daily daily={daily} /> */}
+      <Daily daily={daily} />
     </div>
   );
 }

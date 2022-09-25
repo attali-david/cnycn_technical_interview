@@ -16,8 +16,8 @@ export interface IWeather {
 
 export interface IDate extends IHourly {
   date: string;
-  min: number;
-  max: number;
+  temp_min: number;
+  temp_max: number;
   description?: string;
 }
 
