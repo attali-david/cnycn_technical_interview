@@ -19,6 +19,7 @@ export interface IDate extends IHourly {
   temp_min: number;
   temp_max: number;
   description?: string;
+  icon: string;
 }
 
 export interface IHourly {
