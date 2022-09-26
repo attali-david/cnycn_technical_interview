@@ -8,7 +8,6 @@ import Humidity from "./humidity";
 import Sunset from "./sunset";
 // @ts-ignore
 import Wind from "./wind";
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Map from "./map";
 
 /* 
@@ -70,12 +69,6 @@ function formatForecast(weather: IWeather) {
   return dates;
 }
 
-function render(status: Status) {
-  if (status === Status.FAILURE) return <h1>{status}</h1>;
-
-  return <h1>Loading</h1>;
-}
-
 function Weather({ weather }: IPropsWeather) {
   const [dates, setDates] = useState<IDate[]>([]);
   const [daily, setDaily] = useState<IDate>();
@@ -97,15 +90,7 @@ function Weather({ weather }: IPropsWeather) {
         <Sunset daily={daily} />
         <Humidity daily={daily} />
         <Wind daily={daily} />
-        <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
-          <Map
-            center={{
-              lat: weather.city?.coord.lat,
-              lng: weather.city?.coord.lon,
-            }}
-            zoom={6}
-          />
-        </Wrapper>
+        <Map weather={weather} />
       </div>
     )
   );
