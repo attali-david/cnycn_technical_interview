@@ -20,7 +20,7 @@ function Map({ weather }: IPropsWeather) {
             lat: weather.city?.coord.lat,
             lng: weather.city?.coord.lon,
           },
-          zoom: 7,
+          zoom: 8,
         })
       );
     }
@@ -28,9 +28,9 @@ function Map({ weather }: IPropsWeather) {
   }, [ref, map]);
 
   return (
-    <div className="">
+    <div className="h-full w-full">
       <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
-        <div ref={ref} style={{ width: "50vh", height: "50vh" }} />
+        <div ref={ref} style={{ width: "25vh", height: "25vh" }} />
       </Wrapper>
     </div>
   );

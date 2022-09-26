@@ -83,7 +83,7 @@ function Weather({ weather }: IPropsWeather) {
 
   return (
     daily && (
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-3">
         <Forecast dates={dates} />
         <Hourly daily={daily} />
         <Daily daily={daily} />
