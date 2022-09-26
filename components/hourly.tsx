@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { IPropsDaily } from "../types";
 
-function Hourly({ hourly }) {
+function Hourly({ daily }: IPropsDaily) {
   return (
     <div className="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-xl font-semibold">Hourly Forecast</h1>
       <div className="flex justify-between overflow-x-auto mt-8 space-x-4 dark:text-gray-400">
-        {hourly.map((hour) => (
+        {daily?.hourly.map((hour) => (
           <div
             className="flex flex-col justify-center items-center space-y-1"
             key={hour.time}
@@ -17,7 +18,7 @@ function Hourly({ hourly }) {
                 width={100}
                 height={100}
                 src={`http://openweathermap.org/img/wn/${hour.icon}@2x.png`}
-                alt={hour.description}
+                alt={daily.description}
               />
             </div>
             <span>{hour.temp}°</span>

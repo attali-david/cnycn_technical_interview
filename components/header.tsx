@@ -16,12 +16,14 @@ function Header({ toggler, color, setSelectedCity, setUnit, unit }) {
 
   async function getCities() {
     const result = await myFetch(
-      `/geo/1.0/direct?q=${search}&limit=5&appid=8bef1d80c11bf6b28961f49525e7eb3b`
+      `/geo/1.0/direct?q=${search}&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER}`
     );
-    const filter = result.filter((i) => i.country == "US");
+    if (result) {
+      const filter = result.filter((i) => i.country == "US");
 
-    setCities(filter);
-    setIsDropdownOpen(true);
+      setCities(filter);
+      setIsDropdownOpen(true);
+    }
   }
 
   function onCitySelect(city: ICity) {

@@ -3,29 +3,28 @@ import { useState, useEffect } from "react";
 import Header from "../components/header";
 import { IWeather, ICity } from "../types";
 import Weather from "../components/weather";
+// import Map from "../components/map";
 
 const baseURL = "http://api.openweathermap.org";
-const myFetch = (url) => {
+const myFetch = (url: string) => {
   return fetch(baseURL + url, { mode: "cors" }).then((r) => r.json());
 };
 
 const Home: NextPage = () => {
-  const [weather, setWeather] = useState<IWeather | null>(null);
+  const [weather, setWeather] = useState<IWeather>({} as IWeather);
   const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
-  const [unit, setUnit] = useState(true);
+  const [unit, setUnit] = useState<boolean>(true);
 
   async function getWeather() {
     if (!selectedCity) return;
     const result = await myFetch(
       `/data/2.5/forecast?lat=${selectedCity.lat}&lon=${
         selectedCity.lon
-      }&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=${
+      }&appid=${process.env.NEXT_PUBLIC_WEATHER}&units=${
         !!unit ? "imperial" : "metric"
       }`
     );
     result.unit = unit;
-    console.log(result);
-
     setWeather(result);
   }
 
@@ -37,7 +36,8 @@ const Home: NextPage = () => {
   return (
     <div className="h-screen text-black dark:bg-gray-800 dark:text-gray-100">
       <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
-      {weather && <Weather weather={weather} />}
+      {weather.cod && <Weather weather={weather} />}
+      {/* {weather && <Map lat={selectedCity?.lat} lon={selectedCity?.lon} />} */}
     </div>
   );
 };

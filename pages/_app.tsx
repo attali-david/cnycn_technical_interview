@@ -3,8 +3,8 @@ import type { AppProps } from "next/app";
 import { useState, useEffect } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [toggle, setToggle] = useState(true);
-  const [color, setColor] = useState("");
+  const [toggle, setToggle] = useState<boolean>(true);
+  const [color, setColor] = useState<string>("");
 
   // Color mode toggler that updates localStorage with manual preference
   function toggler(): void {
