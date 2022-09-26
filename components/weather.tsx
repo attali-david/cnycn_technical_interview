@@ -9,7 +9,7 @@ import Sunset from "./sunset";
 // @ts-ignore
 import Wind from "./wind";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
-// import Map from "./map";
+import Map from "./map";
 
 /* 
     Extracts five day forecast and 24 hour forecast from weather object.
@@ -70,10 +70,11 @@ function formatForecast(weather: IWeather) {
   return dates;
 }
 
-// function render(status) {
-// if (status === Status.FAILURE)return <ErrorComponent />;
-// return <Spinner />;
-// }
+function render(status: Status) {
+  if (status === Status.FAILURE) return <h1>{status}</h1>;
+
+  return <h1>Loading</h1>;
+}
 
 function Weather({ weather }: IPropsWeather) {
   const [dates, setDates] = useState<IDate[]>([]);
@@ -85,7 +86,7 @@ function Weather({ weather }: IPropsWeather) {
     setDaily(result[0]);
   }, [weather]);
 
-  useEffect(() => console.log(daily), [daily]);
+  useEffect(() => console.log(weather.city), [weather]);
 
   return (
     daily && (
@@ -96,9 +97,15 @@ function Weather({ weather }: IPropsWeather) {
         <Sunset daily={daily} />
         <Humidity daily={daily} />
         <Wind daily={daily} />
-        {/* <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE} render={render}>
-        <Map />
-      </Wrapper> */}
+        <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
+          <Map
+            center={{
+              lat: weather.city?.coord.lat,
+              lng: weather.city?.coord.lon,
+            }}
+            zoom={6}
+          />
+        </Wrapper>
       </div>
     )
   );

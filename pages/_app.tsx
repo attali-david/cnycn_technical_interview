@@ -7,7 +7,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [color, setColor] = useState<string>("");
 
   // Color mode toggler that updates localStorage with manual preference
-  function toggler(): void {
+  function toggler() {
     if (localStorage.theme == "light") {
       localStorage.theme = "dark";
       setColor("dark");

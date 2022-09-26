@@ -1,18 +1,20 @@
-// import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
+import { MapProps } from "../types";
 
-// function Map({
-//   center,
-//   zoom,
-// }: {
-//   center: google.maps.LatLngLiteral;
-//   zoom: number;
-// }) {
-//   const ref = useRef();
+function Map({ center, zoom }: MapProps) {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const [map, setMap] = React.useState<google.maps.Map>();
 
-//   useEffect(() => {
-//     new window.google.maps.Map(ref.current, { center, zoom });
-//   });
-//   return <div ref={ref} id="map" />;
-// }
+  useEffect(() => {
+    if (ref.current && !map) {
+      setMap(
+        new window.google.maps.Map(ref.current, { center: center, zoom: zoom })
+      );
+    }
+    console.log(ref);
+  }, [ref, map]);
 
-// export default Map;
+  return <div ref={ref} style={{ width: "100vh", height: "100vh" }} />;
+}
+
+export default Map;

@@ -1,16 +1,9 @@
-export interface ICity {
-  name: string;
-  lat: number;
-  lon: number;
-  state: string;
-}
-
 export interface IWeather {
   cod: number;
   message: number;
   cnt: number;
   unit: boolean;
-  city: { sunset: number };
+  city: { sunset: number; coord: { lat: number; lon: number }; state: string };
   list: {
     dt_txt: Date;
     main: {
@@ -47,4 +40,12 @@ export interface IPropsDaily {
 
 export interface IPropsDates {
   dates: IDate[];
+}
+
+export interface MapProps extends google.maps.MapOptions {
+  style?: { [key: string]: string };
+  onClick?: (e: google.maps.MapMouseEvent) => void;
+  onIdle?: (map: google.maps.Map) => void;
+  zoom: number;
+  center: { lat: number; lng: number };
 }
