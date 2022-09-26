@@ -17,6 +17,12 @@ export interface IWeather {
   }[];
 }
 
+export interface ICity {
+  sunset: number;
+  coord: { lat: number; lon: number };
+  state: string;
+}
+
 export interface IDate {
   date: string;
   temp_min: number;
@@ -48,4 +54,12 @@ export interface MapProps extends google.maps.MapOptions {
   onIdle?: (map: google.maps.Map) => void;
   zoom: number;
   center: { lat: number; lng: number };
+}
+
+export interface IHeaderProps {
+  toggler: () => void;
+  color: boolean;
+  setSelectedCity: () => void;
+  setUnit: () => void;
+  unit: boolean;
 }
