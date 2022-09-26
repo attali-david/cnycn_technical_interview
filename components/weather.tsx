@@ -12,6 +12,7 @@ import Wind from "./wind";
  */
 function formatForecast(weather) {
   const { list: forecast } = weather;
+  console.log(weather);
 
   const dates: IDate[] = [];
   for (const day of forecast) {
@@ -28,6 +29,7 @@ function formatForecast(weather) {
         icon: day.weather[0].icon,
         humidity: weather.list[0].main.humidity,
         wind: Math.round(weather.list[0].wind.gust),
+        unit: weather.unit,
       });
     } else {
       lastIndex.temp_min = Math.round(
@@ -75,10 +77,6 @@ function Weather({ weather }) {
     setHourly(today.hourly);
     setDaily(today);
   }, [weather]);
-
-  useEffect(() => {
-    console.log(weather);
-  }, [daily]);
 
   return (
     <div className="grid grid-cols-2">

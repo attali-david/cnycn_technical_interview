@@ -9,11 +9,10 @@ const myFetch = (url: string) => {
   return test;
 };
 
-function Header({ toggler, color, setSelectedCity }) {
+function Header({ toggler, color, setSelectedCity, setUnit, unit }) {
   const [search, setSearch] = useState("");
   const [cities, setCities] = useState<ICity[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [units, setUnits] = useState("imperial");
 
   async function getCities() {
     const result = await myFetch(
@@ -34,6 +33,7 @@ function Header({ toggler, color, setSelectedCity }) {
     e.preventDefault();
     getCities();
   }
+
   return (
     <header className="p-4 relative bg-white dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
@@ -53,7 +53,13 @@ function Header({ toggler, color, setSelectedCity }) {
             >
               <span>F</span>
               <span className="relative">
-                <input id="Toggle1" type="checkbox" className="hidden peer" />
+                <input
+                  id="Toggle1"
+                  type="checkbox"
+                  value={unit}
+                  onChange={() => setUnit(!unit)}
+                  className="hidden peer"
+                />
                 <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
                 <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-800"></div>
               </span>

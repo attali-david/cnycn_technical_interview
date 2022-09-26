@@ -12,23 +12,31 @@ const myFetch = (url) => {
 const Home: NextPage = () => {
   const [weather, setWeather] = useState<IWeather | null>(null);
   const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
+  const [unit, setUnit] = useState(true);
 
   async function getWeather() {
     if (!selectedCity) return;
     const result = await myFetch(
-      `/data/2.5/forecast?lat=${selectedCity.lat}&lon=${selectedCity.lon}&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=imperial`
+      `/data/2.5/forecast?lat=${selectedCity.lat}&lon=${
+        selectedCity.lon
+      }&appid=8bef1d80c11bf6b28961f49525e7eb3b&units=${
+        !!unit ? "imperial" : "metric"
+      }`
     );
+    result.unit = unit;
+    console.log(result);
+
     setWeather(result);
   }
 
   useEffect(() => {
     if (!selectedCity) return;
     getWeather();
-  }, [selectedCity]);
+  }, [selectedCity, unit]);
 
   return (
     <div className="h-screen text-black dark:bg-gray-800 dark:text-gray-100">
-      <Header setSelectedCity={setSelectedCity} />
+      <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
       {weather && <Weather weather={weather} />}
     </div>
   );

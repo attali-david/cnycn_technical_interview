@@ -12,6 +12,7 @@ export interface IWeather {
   temp: number;
   temp_max: number;
   temp_min: number;
+  unit: boolean;
 }
 
 export interface IDate extends IHourly {
@@ -23,6 +24,7 @@ export interface IDate extends IHourly {
   sunset?: string;
   humidity?: number;
   wind?: number;
+  unit?: boolean;
 }
 
 export interface IHourly {
