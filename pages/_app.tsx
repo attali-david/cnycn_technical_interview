@@ -20,8 +20,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   // Checks local storage for color mode preference and adds "dark" class at html head per Tailwind documentation.
   useEffect(() => {
-    console.log("render app");
-
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&

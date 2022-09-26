@@ -11,7 +11,7 @@ function Hourly({ hourly }) {
             className="flex flex-col justify-center items-center space-y-1"
             key={hour.time}
           >
-            <span className="uppercase">{hour.time}</span>
+            <span className="uppercase w-12">{hour.time}</span>
             <div className="w-10 h-10 overflow-hidden">
               <Image
                 width={100}

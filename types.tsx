@@ -20,6 +20,9 @@ export interface IDate extends IHourly {
   temp_max: number;
   description?: string;
   icon: string;
+  sunset?: string;
+  humidity?: number;
+  wind?: number;
 }
 
 export interface IHourly {
