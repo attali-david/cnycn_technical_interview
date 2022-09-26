@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import { FaCloud } from "react-icons/fa";
+import { IPropsDates } from "../types";
 
-function Forecast({ dates }) {
+function Forecast({ dates }: IPropsDates) {
   return (
     <div className="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-xl font-semibold">Five Day Forecast</h1>

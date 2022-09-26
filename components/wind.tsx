@@ -1,8 +1,9 @@
 import React from "react";
 import { FiWind } from "react-icons/fi";
 import { IconContext } from "react-icons";
+import { IPropsDaily } from "../types";
 
-function Wind({ daily }) {
+function Wind({ daily }: IPropsDaily) {
   return (
     <div className="flex flex-col items-center p-8 rounded-md w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100">
       <div className="text-center">
@@ -11,7 +12,7 @@ function Wind({ daily }) {
           daily.unit == true ? "MPH" : "KMH"
         }`}</p>
       </div>
-      <IconContext.Provider value={{ style: { color: "white" }, size: 90 }}>
+      <IconContext.Provider value={{ style: { color: "white" }, size: "90" }}>
         <div>
           <FiWind />
         </div>
