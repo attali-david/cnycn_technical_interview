@@ -65,7 +65,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   }
 
   return (
-    <header className="p-4 relative bg-white dark:bg-gray-800">
+    <header className="bg-gray-100 border-gray-200 p-4 relative dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
         <h1 className="flex w-0 md:w-fit md:items-center text-xl text-bold invisible md:visible">
           Weather App by David Attali
@@ -93,7 +93,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
                   className="hidden peer"
                 />
                 <div className="w-10 h-6 rounded-full shadow-inner dark:bg-gray-400 peer-checked:dark:bg-violet-400"></div>
-                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-gray-800"></div>
+                <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-800"></div>
               </span>
               <span>C</span>
             </label>
@@ -117,9 +117,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
           className="flex items-center w-0 md:w-6 invisible md:visible"
           onClick={() => toggler()}
         >
-          <IconContext.Provider
-            value={{ style: { color: "white" }, size: "100" }}
-          >
+          <IconContext.Provider value={{ size: "100" }}>
             {color == "light" ? <FaMoon /> : <FaSun />}
           </IconContext.Provider>
         </button>

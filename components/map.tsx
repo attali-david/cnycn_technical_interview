@@ -27,7 +27,7 @@ function Map({ weather }: IPropsWeather) {
   }, [ref, map]);
 
   return (
-    <div className="md:h-full md:w-full w-30 h-30 order-last col-span-2 md:col-start-3 md:row-start-3">
+    <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
       <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
         <div
           ref={ref}
