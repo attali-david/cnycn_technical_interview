@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IconContext } from "react-icons";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { ICity, IHeaderProps } from "../types";
 
@@ -66,15 +67,15 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   return (
     <header className="p-4 relative bg-white dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
-        <h1 className="flex w-0 md:w-[25%] invisible md:visible">
+        <h1 className="flex w-0 md:w-fit md:items-center text-xl text-bold invisible md:visible">
           Weather App by David Attali
         </h1>
-        <div className="m:w-[75%]">
+        <div>
           <form className="flex relative" onSubmit={(e) => submitHandler(e)}>
             <input
               type="text"
               placeholder="Search by city"
-              className="m:w-[90%] block p-4 pl-10 text-sm md:text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="w-full mr-6 block p-4 pl-10 text-sm md:text-md text-gray-900 placeholder:italic bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -111,11 +112,16 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
             </ul>
           )}
         </div>
+
         <button
-          className="flex w-0 md:w-6 invisible md:visible"
+          className="flex items-center w-0 md:w-6 invisible md:visible"
           onClick={() => toggler()}
         >
-          {color == "light" ? <FaMoon /> : <FaSun />}
+          <IconContext.Provider
+            value={{ style: { color: "white" }, size: "100" }}
+          >
+            {color == "light" ? <FaMoon /> : <FaSun />}
+          </IconContext.Provider>
         </button>
       </div>
     </header>

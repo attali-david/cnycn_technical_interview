@@ -11,6 +11,7 @@ export interface IWeather {
       temp_max: number;
       temp_min: number;
       humidity: number;
+      feels_like: number;
     };
     weather: { icon: string; main: string }[];
     wind: { gust: number };
