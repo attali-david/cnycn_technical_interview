@@ -18,8 +18,10 @@ export interface IWeather {
 }
 
 export interface ICity {
-  sunset: number;
-  coord: { lat: number; lon: number };
+  country: string;
+  lat: number;
+  lon: number;
+  name: string;
   state: string;
 }
 

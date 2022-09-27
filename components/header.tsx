@@ -31,8 +31,6 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
 
   // Checks local storage for color mode preference and adds "dark" class at html head per Tailwind documentation.
   useEffect(() => {
-    console.log(toggle, color);
-
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&

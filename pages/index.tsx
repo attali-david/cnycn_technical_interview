@@ -15,22 +15,23 @@ const Home: NextPage = () => {
   const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
   const [unit, setUnit] = useState<boolean>(true);
 
-  async function getWeather() {
-    if (!selectedCity) return;
+  async function getWeather(lat: number, lon: number, unit: boolean) {
     const result = await myFetch(
-      `/data/2.5/forecast?lat=${selectedCity.lat}&lon=${
-        selectedCity.lon
-      }&appid=${process.env.NEXT_PUBLIC_WEATHER}&units=${
-        !!unit ? "imperial" : "metric"
-      }`
+      `/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${
+        process.env.NEXT_PUBLIC_WEATHER
+      }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
     setWeather(result);
   }
 
   useEffect(() => {
+    getWeather(40.7127281, -74.0060152, unit);
+  }, []);
+
+  useEffect(() => {
     if (!selectedCity) return;
-    getWeather();
+    getWeather(selectedCity.lat, selectedCity.lon, unit);
   }, [selectedCity, unit]);
 
   return (

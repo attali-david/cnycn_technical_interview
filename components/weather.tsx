@@ -29,13 +29,7 @@ function formatForecast(weather: IWeather) {
         temp_max: Math.round(day.main.temp_max),
         description: day.weather[0].main,
         icon: day.weather[0].icon,
-        hourly: [
-          {
-            time: time,
-            temp: Math.round(day.main.temp),
-            icon: day.weather[0].icon,
-          },
-        ],
+        hourly: [],
       });
     } else {
       lastIndex.temp_min = Math.round(
@@ -46,7 +40,7 @@ function formatForecast(weather: IWeather) {
       );
     }
 
-    if (dates[0].hourly.length > 0 && dates[0].hourly.length < 7) {
+    if (dates[0].hourly.length >= 0 && dates[0].hourly.length < 7) {
       dates[0].hourly.push({
         time: time,
         temp: Math.round(day.main.temp),
@@ -78,8 +72,6 @@ function Weather({ weather }: IPropsWeather) {
     setDates(result);
     setDaily(result[0]);
   }, [weather]);
-
-  useEffect(() => console.log(weather.city), [weather]);
 
   return (
     daily && (
