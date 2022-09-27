@@ -15,7 +15,11 @@ import FeelsLike from "./feels_like";
     Extracts five day forecast and 24 hour forecast from weather object.
  */
 function formatForecast(weather: IWeather) {
-  const { list: forecast } = weather;
+  const {
+    list: forecast,
+    city: { name },
+  } = weather;
+
   const dates: IDate[] = [];
   for (const day of forecast) {
     let UTC = new Date(day.dt_txt);
@@ -53,6 +57,7 @@ function formatForecast(weather: IWeather) {
   dates[0].humidity = weather.list[0].main.humidity;
   dates[0].wind = Math.round(weather.list[0].wind.gust);
   dates[0].unit = weather.unit;
+  dates[0].city = name;
   dates[0].sunset = new Date(weather.city.sunset * 1e3).toLocaleTimeString(
     "en-US",
     {
@@ -72,7 +77,6 @@ function Weather({ weather }: IPropsWeather) {
     let result = formatForecast(weather);
     setDates(result);
     setDaily(result[0]);
-    console.log(result);
   }, [weather]);
 
   return (

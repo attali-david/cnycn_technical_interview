@@ -24,7 +24,7 @@ function Map({ weather }: IPropsWeather) {
         })
       );
     }
-  }, [ref, map]);
+  }, [ref, map, weather]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">

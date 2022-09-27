@@ -3,7 +3,12 @@ export interface IWeather {
   message: number;
   cnt: number;
   unit: boolean;
-  city: { sunset: number; coord: { lat: number; lon: number }; state: string };
+  city: {
+    name: string;
+    sunset: number;
+    coord: { lat: number; lon: number };
+    state: string;
+  };
   list: {
     dt_txt: Date;
     main: {
@@ -32,6 +37,7 @@ export interface IDate {
   temp_max: number;
   description: string;
   icon: string;
+  city?: string;
   sunset?: string;
   humidity?: number;
   wind?: number;

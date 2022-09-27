@@ -22,14 +22,17 @@ const Home: NextPage = () => {
       }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
+    console.log(result);
+
     setWeather(result);
   }
 
   useEffect(() => {
-    getWeather(48.8583, 2.2923, unit);
+    getWeather(40.7128, -74.006, unit);
   }, []);
 
   useEffect(() => {
+    console.log(weather);
     if (!selectedCity) return;
     getWeather(selectedCity.lat, selectedCity.lon, unit);
   }, [selectedCity, unit]);
