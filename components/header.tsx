@@ -68,7 +68,13 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
     <header className="bg-gray-100 border-gray-200 md:mx-32 p-4 relative dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
         <div>
-          <form className="flex relative" onSubmit={(e) => submitHandler(e)}>
+          <form
+            className="flex relative"
+            onSubmit={(e: React.FormEvent<HTMLFormElement>): void =>
+              // @ts-ignore
+              submitHandler(e)
+            }
+          >
             <input
               type="text"
               placeholder="Search by city"
@@ -85,6 +91,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
                 <input
                   id="Toggle1"
                   type="checkbox"
+                  // @ts-ignore
                   value={unit}
                   onChange={() => setUnit(!unit)}
                   className="hidden peer"

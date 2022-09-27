@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Header from "../components/header";
 import { IWeather, ICity } from "../types";
 import Weather from "../components/weather";
-// import Map from "../components/map";
 
 const baseURL = "http://api.openweathermap.org";
 const myFetch = (url: string) => {
