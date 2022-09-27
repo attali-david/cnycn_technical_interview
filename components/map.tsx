@@ -27,9 +27,15 @@ function Map({ weather }: IPropsWeather) {
   }, [ref, map]);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full mt-3">
       <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
-        <div ref={ref} style={{ width: "25vh", height: "25vh" }} />
+        <div
+          ref={ref}
+          style={{
+            width: "25vh",
+            height: "25vh",
+          }}
+        />
       </Wrapper>
     </div>
   );

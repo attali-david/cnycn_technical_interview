@@ -35,10 +35,9 @@ const Home: NextPage = () => {
   }, [selectedCity, unit]);
 
   return (
-    <div className="h-screen text-black dark:bg-gray-800 dark:text-gray-100">
+    <div className="h-full md:h-screen text-black dark:bg-gray-800 dark:text-gray-100">
       <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
       {weather.cod && <Weather weather={weather} />}
-      {/* {weather && <Map lat={selectedCity?.lat} lon={selectedCity?.lon} />} */}
     </div>
   );
 };

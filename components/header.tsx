@@ -66,9 +66,14 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   return (
     <header className="p-4 relative bg-white dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
-        <h1 className="flex ">Weather App by David Attali</h1>
-        <div>
-          <form className="flex" onSubmit={(e) => submitHandler(e)}>
+        <h1 className="flex w-0 invisible md:visible">
+          Weather App by David Attali
+        </h1>
+        <div className="flex w-screen justify-around">
+          <form
+            className="flex justify-between"
+            onSubmit={(e) => submitHandler(e)}
+          >
             <input
               type="text"
               placeholder="Search by city"
@@ -109,7 +114,10 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
             </ul>
           )}
         </div>
-        <button className="flex " onClick={() => toggler()}>
+        <button
+          className="flex w-0 md:w-6 invisible md:visible"
+          onClick={() => toggler()}
+        >
           {color == "light" ? <FaMoon /> : <FaSun />}
         </button>
       </div>

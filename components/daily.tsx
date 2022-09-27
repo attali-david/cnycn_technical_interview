@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
+import { IPropsDaily } from "../types";
 
-function Daily({ daily }) {
+function Daily({ daily }: IPropsDaily) {
   const timeElapsed = Date.now();
   const date = new Date(timeElapsed);
 
   return (
-    <div className="flex flex-col items-center p-8 rounded-md w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100">
+    <div className="flex flex-col col-span-2 md:col-span-1 m-auto items-center p-8 rounded-md w-60 px-12 md:dark:bg-gray-900 md:dark:text-gray-100">
       <div className="text-center">
         <h2 className="text-xl font-semibold">Today</h2>
         <p className="text-sm dark:text-gray-400">{date.toDateString()}</p>

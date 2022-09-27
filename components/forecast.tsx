@@ -4,9 +4,9 @@ import { IPropsDates } from "../types";
 
 function Forecast({ dates }: IPropsDates) {
   return (
-    <div className="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-900 dark:text-gray-100">
+    <div className="col-span-2 md:col-span-1 max-w-md p-8 mx-4 mb-3 md:mx-auto rounded-lg dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-xl font-semibold">Five Day Forecast</h1>
-      <div className="flex justify-between mt-8 space-x-4 dark:text-gray-400">
+      <div className="flex justify-between mt-8 space-x-2 md:space-x-4 dark:text-gray-400">
         {dates?.map((day) => (
           <div className="flex flex-col items-center space-y-1" key={day.date}>
             <span className="uppercase">{day.date}</span>
