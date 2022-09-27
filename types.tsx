@@ -11,6 +11,7 @@ export interface IWeather {
       temp_max: number;
       temp_min: number;
       humidity: number;
+      feels_like: number;
     };
     weather: { icon: string; main: string }[];
     wind: { gust: number };
@@ -35,6 +36,7 @@ export interface IDate {
   humidity?: number;
   wind?: number;
   unit?: boolean;
+  feels_like?: number;
   hourly: { time: string; temp: number; icon: string }[];
 }
 

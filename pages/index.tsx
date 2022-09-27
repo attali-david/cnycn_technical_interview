@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    getWeather(40.7127281, -74.0060152, unit);
+    getWeather(48.8583, 2.2923, unit);
   }, []);
 
   useEffect(() => {
@@ -35,10 +35,9 @@ const Home: NextPage = () => {
   }, [selectedCity, unit]);
 
   return (
-    <div className="h-screen text-black dark:bg-gray-800 dark:text-gray-100">
+    <div className="h-full md:h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100">
       <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
       {weather.cod && <Weather weather={weather} />}
-      {/* {weather && <Map lat={selectedCity?.lat} lon={selectedCity?.lon} />} */}
     </div>
   );
 };

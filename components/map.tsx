@@ -20,16 +20,22 @@ function Map({ weather }: IPropsWeather) {
             lat: weather.city?.coord.lat,
             lng: weather.city?.coord.lon,
           },
-          zoom: 9,
+          zoom: 13,
         })
       );
     }
   }, [ref, map]);
 
   return (
-    <div className="h-full w-full">
+    <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
       <Wrapper apiKey={`${process.env.NEXT_PUBLIC_GOOGLE}`} render={render}>
-        <div ref={ref} style={{ width: "25vh", height: "25vh" }} />
+        <div
+          ref={ref}
+          style={{
+            width: "100%",
+            height: "100%",
+          }}
+        />
       </Wrapper>
     </div>
   );

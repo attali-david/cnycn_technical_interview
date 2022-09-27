@@ -9,6 +9,7 @@ import Sunset from "./sunset";
 // @ts-ignore
 import Wind from "./wind";
 import Map from "./map";
+import FeelsLike from "./feels_like";
 
 /* 
     Extracts five day forecast and 24 hour forecast from weather object.
@@ -48,7 +49,7 @@ function formatForecast(weather: IWeather) {
       });
     }
   }
-
+  dates[0].feels_like = weather.list[0].main.feels_like;
   dates[0].humidity = weather.list[0].main.humidity;
   dates[0].wind = Math.round(weather.list[0].wind.gust);
   dates[0].unit = weather.unit;
@@ -71,14 +72,16 @@ function Weather({ weather }: IPropsWeather) {
     let result = formatForecast(weather);
     setDates(result);
     setDaily(result[0]);
+    console.log(result);
   }, [weather]);
 
   return (
     daily && (
-      <div className="grid grid-cols-3">
-        <Forecast dates={dates} />
-        <Hourly daily={daily} />
+      <div className="grid grid-cols-2 md:grid-cols-4 md:mx-32 gap-x-2 gap-y-2 md:gap-2 ">
         <Daily daily={daily} />
+        <Hourly daily={daily} />
+        <Forecast dates={dates} />
+        <FeelsLike daily={daily} />
         <Sunset daily={daily} />
         <Humidity daily={daily} />
         <Wind daily={daily} />
