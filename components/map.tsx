@@ -32,8 +32,8 @@ function Map({ weather }: IPropsWeather) {
         <div
           ref={ref}
           style={{
-            width: "25vh",
-            height: "25vh",
+            width: "100%",
+            height: "100%",
           }}
         />
       </Wrapper>
