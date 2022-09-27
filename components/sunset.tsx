@@ -10,7 +10,7 @@ function Sunset({ daily }: IPropsDaily) {
         <h2 className="text-xl font-semibold">Sunset</h2>
         <p className="text-sm dark:text-gray-400">{daily.sunset}</p>
       </div>
-      <IconContext.Provider value={{ style: { color: "yellow" }, size: "90" }}>
+      <IconContext.Provider value={{ style: { color: "white" }, size: "90" }}>
         <div>
           <FiSunset />
         </div>
