@@ -20,11 +20,10 @@ function Map({ weather }: IPropsWeather) {
             lat: weather.city?.coord.lat,
             lng: weather.city?.coord.lon,
           },
-          zoom: 8,
+          zoom: 9,
         })
       );
     }
-    console.log(ref);
   }, [ref, map]);
 
   return (
