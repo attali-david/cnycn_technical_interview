@@ -47,7 +47,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
       `/geo/1.0/direct?q=${search}&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER}`
     );
     if (result) {
-      const filter = result.filter((i) => i.country == "US");
+      const filter = result.filter((i: ICity) => i.country == "US");
 
       setCities(filter);
       setIsDropdownOpen(true);
@@ -59,19 +59,22 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
     setIsDropdownOpen(false);
   }
 
-  function submitHandler(e) {
+  function submitHandler(e: Event) {
     e.preventDefault();
     getCities();
   }
 
   return (
-    <header className="bg-gray-100 border-gray-200 p-4 relative dark:bg-gray-800">
+    <header className="bg-gray-100 border-gray-200 md:mx-32 p-4 relative dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
-        <h1 className="flex w-0 md:w-fit md:items-center text-xl text-bold invisible md:visible">
-          Weather App by David Attali
-        </h1>
         <div>
-          <form className="flex relative" onSubmit={(e) => submitHandler(e)}>
+          <form
+            className="flex relative"
+            onSubmit={(e: React.FormEvent<HTMLFormElement>): void =>
+              // @ts-ignore
+              submitHandler(e)
+            }
+          >
             <input
               type="text"
               placeholder="Search by city"
@@ -88,6 +91,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
                 <input
                   id="Toggle1"
                   type="checkbox"
+                  // @ts-ignore
                   value={unit}
                   onChange={() => setUnit(!unit)}
                   className="hidden peer"

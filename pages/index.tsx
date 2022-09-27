@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Header from "../components/header";
 import { IWeather, ICity } from "../types";
 import Weather from "../components/weather";
-// import Map from "../components/map";
 
 const baseURL = "http://api.openweathermap.org";
 const myFetch = (url: string) => {
@@ -22,11 +21,13 @@ const Home: NextPage = () => {
       }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
+    console.log(unit);
+
     setWeather(result);
   }
 
   useEffect(() => {
-    getWeather(48.8583, 2.2923, unit);
+    getWeather(40.7128, -74.006, unit);
   }, []);
 
   useEffect(() => {

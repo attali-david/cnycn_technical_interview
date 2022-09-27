@@ -1,16 +1,20 @@
-import React, { useEffect, useRef } from "react";
+import React, { createRef, useEffect, useRef, useState } from "react";
 import { IPropsWeather } from "../types";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = React.useState<google.maps.Map>();
+  const [map, setMap] = React.useState<google.maps.Map | null>();
 
   function render(status: Status) {
     if (status === Status.FAILURE) return <h1>{status}</h1>;
 
     return <h1>Loading</h1>;
   }
+
+  useEffect(() => {
+    setMap(null);
+  }, [weather]);
 
   useEffect(() => {
     if (ref.current && !map) {
@@ -24,7 +28,7 @@ function Map({ weather }: IPropsWeather) {
         })
       );
     }
-  }, [ref, map]);
+  }, [ref, map, weather]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">

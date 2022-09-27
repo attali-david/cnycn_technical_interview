@@ -15,10 +15,18 @@ import FeelsLike from "./feels_like";
     Extracts five day forecast and 24 hour forecast from weather object.
  */
 function formatForecast(weather: IWeather) {
-  const { list: forecast } = weather;
+  const {
+    list: forecast,
+    city: { name },
+  } = weather;
+
+  const fixDateForAllBrowsers = (dateString: any) =>
+    dateString.replace(/-/g, "/");
+
   const dates: IDate[] = [];
   for (const day of forecast) {
-    let UTC = new Date(day.dt_txt);
+    let fixedDate = fixDateForAllBrowsers(day.dt_txt);
+    let UTC = new Date(fixedDate);
     let date = UTC.toString().slice(0, 3);
     let lastIndex = dates[dates.length - 1];
     let time = UTC.toLocaleTimeString("en-US", { hour: "2-digit" });
@@ -53,6 +61,7 @@ function formatForecast(weather: IWeather) {
   dates[0].humidity = weather.list[0].main.humidity;
   dates[0].wind = Math.round(weather.list[0].wind.gust);
   dates[0].unit = weather.unit;
+  dates[0].city = name;
   dates[0].sunset = new Date(weather.city.sunset * 1e3).toLocaleTimeString(
     "en-US",
     {
@@ -72,22 +81,23 @@ function Weather({ weather }: IPropsWeather) {
     let result = formatForecast(weather);
     setDates(result);
     setDaily(result[0]);
-    console.log(result);
   }, [weather]);
 
   return (
-    daily && (
-      <div className="grid grid-cols-2 md:grid-cols-4 md:mx-32 gap-x-2 gap-y-2 md:gap-2 ">
-        <Daily daily={daily} />
-        <Hourly daily={daily} />
-        <Forecast dates={dates} />
-        <FeelsLike daily={daily} />
-        <Sunset daily={daily} />
-        <Humidity daily={daily} />
-        <Wind daily={daily} />
-        <Map weather={weather} />
-      </div>
-    )
+    <>
+      {daily && (
+        <div className="grid grid-cols-2 md:grid-cols-4 md:mx-32 gap-x-2 gap-y-2 md:gap-2 ">
+          <Daily daily={daily} />
+          <Hourly daily={daily} />
+          <Forecast dates={dates} />
+          <FeelsLike daily={daily} />
+          <Sunset daily={daily} />
+          <Humidity daily={daily} />
+          <Wind daily={daily} />
+          <Map weather={weather} />
+        </div>
+      )}
+    </>
   );
 }
 
