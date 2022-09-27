@@ -20,9 +20,13 @@ function formatForecast(weather: IWeather) {
     city: { name },
   } = weather;
 
+  const fixDateForAllBrowsers = (dateString: any) =>
+    dateString.replace(/-/g, "/");
+
   const dates: IDate[] = [];
   for (const day of forecast) {
-    let UTC = new Date(day.dt_txt);
+    let fixedDate = fixDateForAllBrowsers(day.dt_txt);
+    let UTC = new Date(fixedDate);
     let date = UTC.toString().slice(0, 3);
     let lastIndex = dates[dates.length - 1];
     let time = UTC.toLocaleTimeString("en-US", { hour: "2-digit" });
