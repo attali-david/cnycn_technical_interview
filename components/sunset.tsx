@@ -5,7 +5,7 @@ import { IPropsDaily } from "../types";
 
 function Sunset({ daily }: IPropsDaily) {
   return (
-    <div className="flex flex-col items-center p-8 rounded-md md:col-start-4 md:row-start-2 mx-4 mb-3 md:mx-auto md:mb-0  md:w-60 sm:px-12 dark:bg-gray-900 dark:text-gray-100">
+    <div className="flex flex-col items-center p-8 rounded-md md:col-start-4 md:row-start-1 mx-4 mb-3 md:m-0 md:w-full sm:px-12 dark:bg-gray-900 dark:text-gray-100">
       <div className="text-center">
         <h2 className="text-xl font-semibold">Sunset</h2>
         <p className="text-sm dark:text-gray-400">{daily.sunset}</p>

@@ -7,15 +7,15 @@ function Daily({ daily }: IPropsDaily) {
   const date = new Date(timeElapsed);
 
   return (
-    <div className="flex flex-col col-span-2 md:col-start-1 md:row-start-1 md:order-first m-auto items-center p-8 rounded-md w-60 px-12 lg:dark:bg-gray-900 lg:dark:text-gray-100">
+    <div className="flex flex-col md:flex-row col-span-2 md:col-start-1 md:row-start-1 md:order-first m-auto items-center p-8 rounded-md md:rounded-lg max-w-md px-12 lg:dark:bg-gray-900 lg:dark:text-gray-100">
       <div className="text-center">
         <h2 className="text-xl font-semibold">Today</h2>
         <p className="text-sm dark:text-gray-400">{date.toDateString()}</p>
       </div>
-      <div className="w-full h-full overflow-hidden">
+      <div className=" overflow-hidden">
         <Image
-          width={500}
-          height={500}
+          width={400}
+          height={400}
           src={`http://openweathermap.org/img/wn/${daily.icon}@2x.png`}
           alt={daily.description}
         />
