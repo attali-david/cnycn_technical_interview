@@ -21,7 +21,7 @@ const Home: NextPage = () => {
       }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
-    console.log(result);
+    console.log(unit);
 
     setWeather(result);
   }
@@ -31,7 +31,6 @@ const Home: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(weather);
     if (!selectedCity) return;
     getWeather(selectedCity.lat, selectedCity.lon, unit);
   }, [selectedCity, unit]);
