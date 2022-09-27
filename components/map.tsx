@@ -20,7 +20,7 @@ function Map({ weather }: IPropsWeather) {
             lat: weather.city?.coord.lat,
             lng: weather.city?.coord.lon,
           },
-          zoom: 9,
+          zoom: 13,
         })
       );
     }

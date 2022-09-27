@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    getWeather(40.7127281, -74.0060152, unit);
+    getWeather(48.8583, 2.2923, unit);
   }, []);
 
   useEffect(() => {

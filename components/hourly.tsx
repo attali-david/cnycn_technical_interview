@@ -6,7 +6,7 @@ function Hourly({ daily }: IPropsDaily) {
   return (
     <div className="max-w-md p-8 mx-auto rounded-lg dark:bg-gray-900 dark:text-gray-100">
       <h1 className="text-xl font-semibold">Hourly Forecast</h1>
-      <div className="flex justify-between overflow-x-auto mt-8 space-x-4 dark:text-gray-400">
+      <div className="flex justify-between scrollbar-hide overflow-x-auto mt-8 space-x-4 dark:text-gray-400">
         {daily?.hourly.map((hour) => (
           <div
             className="flex flex-col justify-center items-center space-y-1"

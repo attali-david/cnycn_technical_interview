@@ -18,7 +18,6 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
 
   // Color mode toggler that updates localStorage with manual preference
   function toggler() {
-    console.log(toggle);
     if (localStorage.theme == "light") {
       localStorage.theme = "dark";
       setColor("dark");
