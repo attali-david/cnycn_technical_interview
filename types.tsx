@@ -67,9 +67,7 @@ export interface MapProps extends google.maps.MapOptions {
 }
 
 export interface IHeaderProps {
-  toggler: () => void;
-  color: boolean;
-  setSelectedCity: () => void;
-  setUnit: () => void;
+  setSelectedCity: (arg: ICity) => void;
+  setUnit: (arg: boolean) => void;
   unit: boolean;
 }

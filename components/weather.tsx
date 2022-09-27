@@ -80,18 +80,20 @@ function Weather({ weather }: IPropsWeather) {
   }, [weather]);
 
   return (
-    daily && (
-      <div className="grid grid-cols-2 md:grid-cols-4 md:mx-32 gap-x-2 gap-y-2 md:gap-2 ">
-        <Daily daily={daily} />
-        <Hourly daily={daily} />
-        <Forecast dates={dates} />
-        <FeelsLike daily={daily} />
-        <Sunset daily={daily} />
-        <Humidity daily={daily} />
-        <Wind daily={daily} />
-        <Map weather={weather} />
-      </div>
-    )
+    <>
+      {daily && (
+        <div className="grid grid-cols-2 md:grid-cols-4 md:mx-32 gap-x-2 gap-y-2 md:gap-2 ">
+          <Daily daily={daily} />
+          <Hourly daily={daily} />
+          <Forecast dates={dates} />
+          <FeelsLike daily={daily} />
+          <Sunset daily={daily} />
+          <Humidity daily={daily} />
+          <Wind daily={daily} />
+          <Map weather={weather} />
+        </div>
+      )}
+    </>
   );
 }
 
