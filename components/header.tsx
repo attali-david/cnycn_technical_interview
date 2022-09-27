@@ -66,7 +66,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   return (
     <header className="p-4 relative bg-white dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
-        <h1 className="flex w-0 invisible md:visible">
+        <h1 className="flex w-0 md:w-[25%] invisible md:visible">
           Weather App by David Attali
         </h1>
         <div className="">

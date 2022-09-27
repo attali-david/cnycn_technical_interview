@@ -35,6 +35,7 @@ export interface IDate {
   humidity?: number;
   wind?: number;
   unit?: boolean;
+  feels_like?: number;
   hourly: { time: string; temp: number; icon: string }[];
 }
 
