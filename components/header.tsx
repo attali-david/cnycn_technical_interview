@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ICity, IHeaderProps } from "../types";
 import Nav from "./nav";
 
-const baseURL = "http://api.openweathermap.org";
+const baseURL = "//api.openweathermap.org";
 const myFetch = (url: string) => {
   const test = fetch(baseURL + url, { mode: "cors" }).then((r) => r.json());
   return test;
