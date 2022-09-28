@@ -1,3 +1,27 @@
+export interface IHeaderProps {
+  setSelectedCity: (arg: ICity) => void;
+  setUnit: (arg: boolean) => void;
+  unit: boolean;
+}
+
+export interface INavProps extends IColorModeProps, IFormProps {}
+
+export interface IFormProps extends IColorModeProps {
+  unit: boolean;
+  setUnit: (arg: boolean) => void;
+  search: string;
+  setSearch: (arg: string) => void;
+  onCitySelect: (arg: ICity) => void;
+  submitHandler: (arg: Event) => void;
+  isDropdownOpen: boolean;
+  cities: ICity[];
+}
+
+export interface IColorModeProps {
+  toggler: () => void;
+  color: string;
+}
+
 export interface IWeather {
   cod: number;
   message: number;
@@ -64,10 +88,4 @@ export interface MapProps extends google.maps.MapOptions {
   onIdle?: (map: google.maps.Map) => void;
   zoom: number;
   center: { lat: number; lng: number };
-}
-
-export interface IHeaderProps {
-  setSelectedCity: (arg: ICity) => void;
-  setUnit: (arg: boolean) => void;
-  unit: boolean;
 }
