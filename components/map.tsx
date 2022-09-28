@@ -50,12 +50,10 @@ function Map({ weather }: IPropsWeather) {
         })
       );
     }
+    if (map) {
+      addMarker(map);
+    }
   }, [ref, map, weather]);
-
-  useEffect(() => {
-    if (!map) return;
-    addMarker(map);
-  }, [map]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
@@ -73,8 +71,3 @@ function Map({ weather }: IPropsWeather) {
 }
 
 export default Map;
-function getIconAttributes(
-  arg0: string
-): string | google.maps.Icon | google.maps.Symbol | null | undefined {
-  throw new Error("Function not implemented.");
-}

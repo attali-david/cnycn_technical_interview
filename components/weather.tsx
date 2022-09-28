@@ -49,7 +49,7 @@ function formatForecast(weather: IWeather) {
       );
     }
 
-    if (dates[0].hourly.length >= 0 && dates[0].hourly.length < 7) {
+    if (dates[0].hourly.length < 7) {
       dates[0].hourly.push({
         time: time,
         temp: Math.round(day.main.temp),

@@ -2,6 +2,7 @@ import React from "react";
 import { INavProps } from "../types";
 import ColorMode from "./color_mode";
 import Form from "./form";
+import Mail from "./mail";
 
 function Nav({
   unit,
@@ -30,7 +31,10 @@ function Nav({
           color={color}
           submitHandler={submitHandler}
         />
-        <ColorMode toggler={toggler} color={color} />
+        <div className="flex md:justify-between ml-4 w-[10%]">
+          <Mail />
+          <ColorMode toggler={toggler} color={color} />
+        </div>
       </div>
     </header>
   );
