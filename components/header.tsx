@@ -10,7 +10,7 @@ const myFetch = (url: string) => {
 
 function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   const [search, setSearch] = useState("");
-  const [cities, setCities] = useState<ICity[]>([] as ICity[]);
+  const [cities, setCities] = useState<ICity[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [toggle, setToggle] = useState<boolean>(true);
   const [color, setColor] = useState<string>("");

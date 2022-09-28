@@ -27,7 +27,7 @@ function addMarker(map: google.maps.Map) {
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = React.useState<google.maps.Map>();
+  const [map, setMap] = useState<google.maps.Map>();
 
   function render(status: Status) {
     if (status === Status.FAILURE) return <h1>{status}</h1>;
@@ -35,8 +35,8 @@ function Map({ weather }: IPropsWeather) {
     return <h1>Loading</h1>;
   }
 
-  useEffect(() => {
-    if (ref.current && !map) {
+  function initMap() {
+    if (ref.current) {
       setMap(
         new window.google.maps.Map(ref.current, {
           center: {
@@ -50,10 +50,16 @@ function Map({ weather }: IPropsWeather) {
         })
       );
     }
-    if (map) {
-      addMarker(map);
-    }
-  }, [ref, map, weather]);
+  }
+
+  useEffect(() => {
+    !map && initMap();
+    map && addMarker(map);
+  }, [ref, map]);
+
+  useEffect(() => {
+    initMap();
+  }, [weather]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">

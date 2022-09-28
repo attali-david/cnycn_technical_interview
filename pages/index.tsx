@@ -27,9 +27,9 @@ const Home: NextPage = () => {
     setWeather(result);
   }
 
-  // Retrieves weather resource for New York City on initial render of application.
+  // Retrieves weather resource for CNYCN on initial render of application.
   useEffect(() => {
-    getWeather(40.7128, -74.006, unit);
+    getWeather(40.70589455795907, -74.01076921164105, unit);
   }, []);
 
   // Retrieves weather resource for selectedCity based on input every time city or unit changes.
