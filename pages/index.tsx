@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/header";
 import { IWeather, ICity } from "../types";
 import Weather from "../components/weather";
+import Modal from "../components/modal";
 
 const baseURL = "http://api.openweathermap.org";
 const myFetch = (url: string) => {
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
   const [weather, setWeather] = useState<IWeather>({} as IWeather);
   const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
   const [unit, setUnit] = useState<boolean>(true);
+  const [init, setInit] = useState<boolean>(true);
 
   async function getWeather(lat: number, lon: number, unit: boolean) {
     const result = await myFetch(
@@ -37,6 +39,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="h-full md:h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100">
+      {init && <Modal setInit={setInit} />}
       <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
       {weather.cod && <Weather weather={weather} />}
     </div>
