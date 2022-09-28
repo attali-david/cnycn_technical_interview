@@ -5,7 +5,7 @@ import { IWeather, ICity } from "../types";
 import Weather from "../components/weather";
 import Modal from "../components/modal";
 
-const baseURL = "https://api.openweathermap.org";
+const baseURL = "//api.openweathermap.org";
 const myFetch = (url: string) => {
   return fetch(baseURL + url, { mode: "cors" }).then((r) => r.json());
 };
