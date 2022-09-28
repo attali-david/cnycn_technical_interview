@@ -1,11 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IPropsWeather } from "../types";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { markers } from "../data/gooogle_markers";
+
+function addMarker(map: google.maps.Map) {
+  markers.map((marker) => {
+    let mark = new google.maps.Marker({
+      position: new google.maps.LatLng(marker.lat, marker.lon),
+      map: map,
+      // label: marker.title,
+      // clickable: marker.clickable,
+    });
+    let infoWindow = new google.maps.InfoWindow({
+      content: marker.title,
+      maxWidth: 200,
+    });
+    mark.addListener("click", () => {
+      infoWindow.open({
+        anchor: mark,
+        map,
+        shouldFocus: false,
+      });
+    });
+  });
+}
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
   const [map, setMap] = React.useState<google.maps.Map | null>();
-  const [googleMarkers, setGoogleMarkers] = useState<google.maps.Marker[]>([]);
 
   function render(status: Status) {
     if (status === Status.FAILURE) return <h1>{status}</h1>;
@@ -26,6 +48,9 @@ function Map({ weather }: IPropsWeather) {
             lng: weather.city?.coord.lon,
           },
           zoom: 13,
+          streetViewControl: false,
+          rotateControl: false,
+          gestureHandling: "cooperative",
         })
       );
     }
@@ -33,12 +58,7 @@ function Map({ weather }: IPropsWeather) {
 
   useEffect(() => {
     if (!map) return;
-    new google.maps.Marker({
-      position: new google.maps.LatLng(40.7128, -74.006),
-      map: map,
-      clickable: true,
-      title: "home",
-    });
+    addMarker(map);
   }, [map]);
 
   return (
