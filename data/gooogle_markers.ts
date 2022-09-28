@@ -153,4 +153,17 @@ export const markers = [
         "</div>" +
         "</div>"
     },
+    {
+        lat: 40.70589455795907, 
+        lon: -74.01076921164105,
+        clickable: true,
+        title: 
+        '<div>' +
+        '<div>' +
+        "</div>" +
+        '<h1 style="color: black">CNYCN</h1>' +
+        '<div>' +
+        "</div>" +
+        "</div>"
+    },
 ]

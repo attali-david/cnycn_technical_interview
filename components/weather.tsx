@@ -10,7 +10,6 @@ import Sunset from "./sunset";
 import Wind from "./wind";
 import Map from "./map";
 import FeelsLike from "./feels_like";
-import Marker from "./markers";
 
 /* 
     Extracts five day forecast and 24 hour forecast from weather object.
@@ -50,7 +49,7 @@ function formatForecast(weather: IWeather) {
       );
     }
 
-    if (dates[0].hourly.length >= 0 && dates[0].hourly.length < 7) {
+    if (dates[0].hourly.length < 7) {
       dates[0].hourly.push({
         time: time,
         temp: Math.round(day.main.temp),

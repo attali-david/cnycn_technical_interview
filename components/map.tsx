@@ -27,7 +27,7 @@ function addMarker(map: google.maps.Map) {
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = React.useState<google.maps.Map | null>();
+  const [map, setMap] = useState<google.maps.Map>();
 
   function render(status: Status) {
     if (status === Status.FAILURE) return <h1>{status}</h1>;
@@ -35,12 +35,8 @@ function Map({ weather }: IPropsWeather) {
     return <h1>Loading</h1>;
   }
 
-  useEffect(() => {
-    setMap(null);
-  }, [weather]);
-
-  useEffect(() => {
-    if (ref.current && !map) {
+  function initMap() {
+    if (ref.current) {
       setMap(
         new window.google.maps.Map(ref.current, {
           center: {
@@ -54,12 +50,16 @@ function Map({ weather }: IPropsWeather) {
         })
       );
     }
-  }, [ref, map, weather]);
+  }
 
   useEffect(() => {
-    if (!map) return;
-    addMarker(map);
-  }, [map]);
+    !map && initMap();
+    map && addMarker(map);
+  }, [ref, map]);
+
+  useEffect(() => {
+    initMap();
+  }, [weather]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
@@ -77,8 +77,3 @@ function Map({ weather }: IPropsWeather) {
 }
 
 export default Map;
-function getIconAttributes(
-  arg0: string
-): string | google.maps.Icon | google.maps.Symbol | null | undefined {
-  throw new Error("Function not implemented.");
-}
