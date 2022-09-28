@@ -1,6 +1,29 @@
-import React, { createRef, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { IPropsWeather } from "../types";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { markers } from "../data/gooogle_markers";
+
+function addMarker(map: google.maps.Map) {
+  markers.map((marker) => {
+    let mark = new google.maps.Marker({
+      position: new google.maps.LatLng(marker.lat, marker.lon),
+      map: map,
+      // label: marker.title,
+      // clickable: marker.clickable,
+    });
+    let infoWindow = new google.maps.InfoWindow({
+      content: marker.title,
+      maxWidth: 200,
+    });
+    mark.addListener("click", () => {
+      infoWindow.open({
+        anchor: mark,
+        map,
+        shouldFocus: false,
+      });
+    });
+  });
+}
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,10 +48,18 @@ function Map({ weather }: IPropsWeather) {
             lng: weather.city?.coord.lon,
           },
           zoom: 13,
+          streetViewControl: false,
+          rotateControl: false,
+          gestureHandling: "cooperative",
         })
       );
     }
   }, [ref, map, weather]);
+
+  useEffect(() => {
+    if (!map) return;
+    addMarker(map);
+  }, [map]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
@@ -46,3 +77,8 @@ function Map({ weather }: IPropsWeather) {
 }
 
 export default Map;
+function getIconAttributes(
+  arg0: string
+): string | google.maps.Icon | google.maps.Symbol | null | undefined {
+  throw new Error("Function not implemented.");
+}
