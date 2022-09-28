@@ -16,6 +16,7 @@ const Home: NextPage = () => {
   const [unit, setUnit] = useState<boolean>(true);
   const [init, setInit] = useState<boolean>(true);
 
+  // Retrieves weather resource given lat, lon, and units.
   async function getWeather(lat: number, lon: number, unit: boolean) {
     const result = await myFetch(
       `/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${
@@ -23,15 +24,15 @@ const Home: NextPage = () => {
       }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
-    console.log(unit);
-
     setWeather(result);
   }
 
+  // Retrieves weather resource for New York City on initial render of application.
   useEffect(() => {
     getWeather(40.7128, -74.006, unit);
   }, []);
 
+  // Retrieves weather resource for selectedCity based on input every time city or unit changes.
   useEffect(() => {
     if (!selectedCity) return;
     getWeather(selectedCity.lat, selectedCity.lon, unit);

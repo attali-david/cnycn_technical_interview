@@ -27,17 +27,13 @@ function addMarker(map: google.maps.Map) {
 
 function Map({ weather }: IPropsWeather) {
   const ref = useRef<HTMLDivElement>(null);
-  const [map, setMap] = React.useState<google.maps.Map | null>();
+  const [map, setMap] = React.useState<google.maps.Map>();
 
   function render(status: Status) {
     if (status === Status.FAILURE) return <h1>{status}</h1>;
 
     return <h1>Loading</h1>;
   }
-
-  useEffect(() => {
-    setMap(null);
-  }, [weather]);
 
   useEffect(() => {
     if (ref.current && !map) {

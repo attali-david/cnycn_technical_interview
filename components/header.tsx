@@ -42,6 +42,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
     }
   }, [toggle]);
 
+  // Retrieves payload with cities that match user-input and toggles dropdown menu with list of cities.
   async function getCities() {
     const result = await myFetch(
       `/geo/1.0/direct?q=${search}&limit=5&appid=${process.env.NEXT_PUBLIC_WEATHER}`
@@ -54,18 +55,20 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
     }
   }
 
+  // Bubbles up state of selectedCity and toggles dropdown menu after user-click.
   function onCitySelect(city: ICity) {
     setSelectedCity(city);
     setIsDropdownOpen(false);
   }
 
+  //
   function submitHandler(e: Event) {
     e.preventDefault();
     getCities();
   }
 
   return (
-    <header className="bg-gray-100 border-gray-200 md:mx-32 p-4 relative dark:bg-gray-800">
+    <header className="bg-white border-gray-200 md:mx-32 p-4 relative dark:bg-gray-800">
       <div className="container flex justify-between h-16 mx-auto">
         <div>
           <form
