@@ -1,1 +1,1 @@
-web: node --inspect .next/server/pages/index.js
+web: node inspect ./node_modules/next/dist/bin/next
