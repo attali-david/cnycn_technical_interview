@@ -5,6 +5,6 @@
     "address": "localhost",
     "port": 9229,
     "protocol": "inspector",
-    "localRoot": "./_app.tsx",
+    "localRoot": "./pages/_app.tsx",
     "remoteRoot": "/app"
 }

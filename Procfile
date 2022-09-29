@@ -1,1 +1,1 @@
-web: node --inspect ./\_app.tsx
+web: node --inspect ./pages/\_app.tsx
