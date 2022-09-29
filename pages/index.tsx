@@ -24,14 +24,12 @@ const Home: NextPage = () => {
       }&units=${!!unit ? "imperial" : "metric"}`
     );
     result.unit = unit;
-    console.log("API", result);
 
     setWeather(result);
   }
 
   // Retrieves weather resource for CNYCN on initial render of application.
   useEffect(() => {
-    debugger;
     getWeather(40.70589455795907, -74.01076921164105, unit);
   }, []);
 

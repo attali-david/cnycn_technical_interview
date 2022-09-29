@@ -36,6 +36,8 @@ function Map({ weather }: IPropsWeather) {
   }
 
   function initMap() {
+    if (!ref.current) console.log(weather);
+
     if (ref.current) {
       setMap(
         new window.google.maps.Map(ref.current, {
@@ -53,14 +55,13 @@ function Map({ weather }: IPropsWeather) {
   }
 
   useEffect(() => {
-    debugger;
     initMap();
   }, [weather]);
 
   useEffect(() => {
     !map && initMap();
     map && addMarker(map);
-  }, [ref, map]);
+  }, [ref.current, map]);
 
   return (
     <div className="md:h-full md:w-full w-[300px] h-[300px] m-auto col-span-2 md:m-0 md:col-start-3 md:row-start-3">
