@@ -29,12 +29,15 @@ const Home: NextPage = () => {
 
   // Retrieves weather resource for CNYCN on initial render of application.
   useEffect(() => {
+    console.log("render getweather");
     getWeather(40.70589455795907, -74.01076921164105, unit);
   }, []);
 
   // Retrieves weather resource for selectedCity based on input every time city or unit changes.
   useEffect(() => {
+    console.log("render select city");
     if (!selectedCity) return;
+    console.log(selectedCity);
     getWeather(selectedCity.lat, selectedCity.lon, unit);
   }, [selectedCity, unit]);
 
