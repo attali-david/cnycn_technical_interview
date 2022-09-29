@@ -53,6 +53,7 @@ function Map({ weather }: IPropsWeather) {
   }
 
   useEffect(() => {
+    debugger;
     initMap();
   }, [weather]);
 
