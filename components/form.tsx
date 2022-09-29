@@ -13,20 +13,22 @@ function Form({
 }: IFormProps) {
   return (
     <div>
-      <form
-        className="flex relative"
-        onSubmit={(e: React.FormEvent<HTMLFormElement>): void =>
-          // @ts-ignore
-          submitHandler(e)
-        }
-      >
-        <input
-          type="text"
-          placeholder="Search by city"
-          className="w-full mr-6 block p-4 pl-10 text-sm md:text-md text-gray-900 placeholder:italic bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+      <div className="flex">
+        <form
+          className="flex relative"
+          onSubmit={(e: React.FormEvent<HTMLFormElement>): void =>
+            // @ts-ignore
+            submitHandler(e)
+          }
+        >
+          <input
+            type="text"
+            placeholder="Search by city"
+            className="w-full mr-6 block p-4 pl-10 text-sm md:text-md text-gray-900 placeholder:italic bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </form>
         <label
           htmlFor="Toggle1"
           className="inline-flex  items-center space-x-4 cursor-pointer dark:text-gray-100"
@@ -46,7 +48,7 @@ function Form({
           </span>
           <span>C</span>
         </label>
-      </form>
+      </div>
       {isDropdownOpen && cities.length && (
         <ul className="block p-2 mb-6 text-md text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-50">
           {cities.map((result) => (

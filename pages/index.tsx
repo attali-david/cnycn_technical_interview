@@ -12,7 +12,13 @@ const myFetch = (url: string) => {
 
 const Home: NextPage = () => {
   const [weather, setWeather] = useState<IWeather>({} as IWeather);
-  const [selectedCity, setSelectedCity] = useState<ICity | null>(null);
+  const [selectedCity, setSelectedCity] = useState<ICity>({
+    country: "US",
+    name: "New York",
+    state: "NY",
+    lat: 40.70589455795907,
+    lon: -74.01076921164105,
+  });
   const [unit, setUnit] = useState<boolean>(true);
   const [init, setInit] = useState<boolean>(true);
 
@@ -30,7 +36,7 @@ const Home: NextPage = () => {
 
   // Retrieves weather resource for CNYCN on initial render of application.
   useEffect(() => {
-    getWeather(40.70589455795907, -74.01076921164105, unit);
+    getWeather(selectedCity.lat, selectedCity.lon, true);
   }, []);
 
   // Retrieves weather resource for selectedCity based on input every time city or unit changes.

@@ -36,8 +36,6 @@ function Map({ weather }: IPropsWeather) {
   }
 
   function initMap() {
-    if (!ref.current) console.log(weather);
-
     if (ref.current) {
       setMap(
         new window.google.maps.Map(ref.current, {
