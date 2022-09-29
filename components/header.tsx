@@ -59,7 +59,6 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
     setIsDropdownOpen(false);
   }
 
-  //
   function submitHandler(e: Event) {
     e.preventDefault();
     getCities();
