@@ -1,1 +1,1 @@
-web: node --inspect .next/server/pages/\_app.js
+web: node --inspect .next/server/pages/index.js
