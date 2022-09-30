@@ -7,25 +7,29 @@ function Daily({ daily }: IPropsDaily) {
   const date = new Date(timeElapsed);
 
   return (
-    <div className="flex flex-col md:flex-row col-span-2 md:col-start-1 md:row-start-1 md:order-first m-auto items-center p-8 rounded-md md:rounded-lg max-w-md px-12 md:bg-gray-900 md:text-gray-100">
+    <div className="flex flex-col m-auto col-span-2 items-center p-8 rounded-md overflow-hidden max-w-md px-12 md:min-w-full md:col-start-1 md:row-start-1 md:order-first md:rounded-lg md:my-0 md:flex-row md:justify-between md:bg-gray-900 md:text-gray-100">
       <div className="text-center">
-        <h2 className="text-xl font-semibold">{daily.city}</h2>
-        <p className="text-sm dark:text-gray-400">{date.toDateString()}</p>
+        <h2 className="text-3xl inline-block md:text-xl font-semibold">
+          {daily.city}
+        </h2>
+        <p className="text-lg dark:text-gray-400">{date.toDateString()}</p>
       </div>
-      <div className=" overflow-hidden">
+      <div className="overflow-hidden">
         <Image
-          width={400}
-          height={400}
+          width={200}
+          height={200}
           src={`http://openweathermap.org/img/wn/${daily.icon}@2x.png`}
           alt={daily.description}
         />
       </div>
-      <div className="mb-2 text-3xl font-semibold">
-        {" "}
-        {daily.temp_max}°<span className="mx-1 font-normal">/</span>
-        {daily.temp_min}°
+      <div className="flex flex-col mb-2 text-3xl font-semibold items-center">
+        <div>
+          {" "}
+          {daily.temp_max}°<span className="mx-1 font-normal">/</span>
+          {daily.temp_min}°
+        </div>
+        <p className="dark:text-gray-400 capitalize">{daily.description}</p>
       </div>
-      <p className="dark:text-gray-400 capitalize">{daily.description}</p>
     </div>
   );
 }

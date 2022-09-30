@@ -4,7 +4,7 @@ import { IPropsDaily } from "../types";
 
 function Hourly({ daily }: IPropsDaily) {
   return (
-    <div className="col-span-2 md:col-span-2 max-w-md p-8 mx-4 mb-3 md:m-auto grid-span-2 md:col-start-0 md:row-start-3 rounded-lg bg-gray-900 text-gray-100">
+    <div className="col-span-2 grid-span-2 md:col-span-2 max-w-md p-8 mx-4 mb-3 md:min-w-full md:px-[5%] md:justify-between md:m-auto  md:col-start-0 md:row-start-3 rounded-lg bg-gray-900 text-gray-100">
       <h1 className="text-xl font-semibold">Hourly Forecast</h1>
       <div className="flex justify-between scrollbar-hide overflow-x-auto mt-8 space-x-4 dark:text-gray-400">
         {daily?.hourly.map((hour) => (
