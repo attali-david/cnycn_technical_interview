@@ -46,7 +46,7 @@ const Home: NextPage = () => {
   }, [selectedCity, unit]);
 
   return (
-    <div className="h-full md:min-h-screen bg-white text-black dark:bg-gray-800 dark:text-gray-100">
+    <div className="min-h-full md:min-h-screen bg-white pb-16 text-black dark:bg-gray-800 dark:text-gray-100">
       {init && <Modal setInit={setInit} />}
       <Header setSelectedCity={setSelectedCity} setUnit={setUnit} unit={unit} />
       {weather.cod && <Weather weather={weather} />}
