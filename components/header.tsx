@@ -24,7 +24,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
       localStorage.theme = "light";
       setColor("light");
     }
-    setToggle(!toggle);
+    setToggle((prev) => !prev);
   }
 
   // Checks local storage for color mode preference and adds "dark" class at html head per Tailwind documentation.
@@ -56,7 +56,7 @@ function Header({ setSelectedCity, setUnit, unit }: IHeaderProps) {
   // Bubbles up state of selectedCity and toggles dropdown menu after user-click.
   function onCitySelect(city: ICity) {
     setSelectedCity(city);
-    setIsDropdownOpen(false);
+    setIsDropdownOpen((prev) => false);
   }
 
   function submitHandler(e: Event) {
