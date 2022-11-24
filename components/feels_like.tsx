@@ -1,5 +1,5 @@
 import React from "react";
-import { FiDroplet, FiThermometer } from "react-icons/fi";
+import { FiThermometer } from "react-icons/fi";
 import { IconContext } from "react-icons";
 import { IPropsDaily } from "../types";
 

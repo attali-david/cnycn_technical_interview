@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { IPropsDaily } from "../types";
+import getTime from "../utils/get_time";
 
 function Daily({ daily }: IPropsDaily) {
-  const timeElapsed = Date.now();
-  const date = new Date(timeElapsed);
+  const date = getTime();
 
   return (
     <div className="flex flex-col m-auto col-span-2 items-center p-8 rounded-md overflow-hidden max-w-md px-12 md:min-w-full md:col-start-1 md:row-start-1 md:order-first md:rounded-lg md:my-0 md:flex-row md:justify-between md:bg-gray-900 md:text-gray-100">
